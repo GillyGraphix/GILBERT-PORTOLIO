@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@layer base {
+    :root, .dark {
+        /* Rangi kuu za mfumo mzima (Dark Mode pekee) */
+        --bg-main: #0f0a06;
+        --bg-card: #1a120b;
+        --text-main: #fcf9f2;
+        --text-soft: #a89f91;
+        --text-muted: #736b5e;
+        --line: #33271c;
+        
+        /* Rangi za vile vibox vya mawasiliano (Na kwingineko) */
+        --accent-gold: #f4c95d;
+        --accent-teal: #00d1b2;
+        --accent-orange: #ff7a00;
+
+        /* Rangi mbadala kama uliwahi kutumia 'surface' kwenye section zingine */
+        --surface-light-2: #0f0a06;
+        --surface-text: #fcf9f2;
+        --surface-text-soft: #a89f91;
+        --surface-line: #33271c;
+    }
+}
+
+/* Animations zako ziko palepale, sijaondoa chochote */
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -14px, 0);
+    }
+}
+
+@keyframes floatMedium {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -10px, 0);
+    }
+}
+
+@keyframes floatDelay {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, -18px, 0);
+    }
+}
+
+.animate-float-slow {
+    animation: floatSlow 7s ease-in-out infinite;
+}
+
+.animate-float-medium {
+    animation: floatMedium 5s ease-in-out infinite;
+}
+
+.animate-float-delay {
+    animation: floatDelay 8s ease-in-out infinite;
+}
