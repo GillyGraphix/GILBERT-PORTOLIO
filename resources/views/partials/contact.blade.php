@@ -197,6 +197,23 @@
     </div>
 </section>
 
+<!-- KIKASHA KIPYA CHA ERROR (TOAST) -->
+<div id="custom-error-alert" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[9999] flex items-center gap-4 rounded-2xl border border-[var(--accent-orange)] bg-[#1a120b] px-6 py-4 shadow-[0_10px_30px_rgba(255,122,0,0.2)] transition-all duration-500 translate-y-24 opacity-0 pointer-events-none">
+    
+    <!-- Icon ya Error (Orange) -->
+    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[rgba(255,122,0,0.1)] text-[var(--accent-orange)]">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+    </div>
+    
+    <!-- Maelezo ya Error -->
+    <div>
+        <p class="text-sm font-bold text-[var(--accent-gold)] uppercase tracking-wider">Oops! Error</p>
+        <p id="error-message-text" class="text-sm text-[var(--text-soft)]">Network error. Please try again.</p>
+    </div>
+</div>
+
 <!-- JAVASCRIPT YA KUTUMA DATA NA COUNTDOWN -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -206,7 +223,23 @@
         const successMessageText = document.getElementById('success-message-text');
         const countdownTimer = document.getElementById('countdown-timer');
         
+        // Elementi za Error Alert
+        const errorAlert = document.getElementById('custom-error-alert');
+        const errorMessageText = document.getElementById('error-message-text');
+        
         let countdownInterval; // Kuhifadhi interval ili kuizuia isijirudie
+
+        // Function mpya ya kuonyesha Error
+        function showErrorToast(message) {
+            errorMessageText.innerText = message;
+            errorAlert.classList.remove('translate-y-24', 'opacity-0');
+            errorAlert.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                errorAlert.classList.remove('translate-y-0', 'opacity-100');
+                errorAlert.classList.add('translate-y-24', 'opacity-0');
+            }, 5000); // Inapotea baada ya sekunde 5
+        }
 
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
@@ -279,12 +312,14 @@
                     }, 1000); // Kila sekunde moja (1000ms)
 
                 } else {
-                    alert(data.message || 'Tafadhali jaza fomu kwa usahihi.');
+                    // HAPA: Makosa ya fomu kujazwa vibaya (Kiingereza + Custom Toast)
+                    showErrorToast(data.message || 'Please fill out the form correctly.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Kuna shida ya mtandao, tafadhali jaribu tena.');
+                // HAPA: Makosa ya mtandao (Kiingereza + Custom Toast)
+                showErrorToast('Network error. Please check your connection and try again.');
             })
             .finally(() => {
                 submitBtn.innerHTML = originalBtnHtml;
