@@ -63,36 +63,95 @@
         0%, 100% { opacity: 0.4; box-shadow: 0 0 2px var(--accent-gold); transform: scaleX(0.8); }
         50% { opacity: 1; box-shadow: 0 0 12px var(--accent-gold); transform: scaleX(1); }
     }
+
+    /* === 4. MBWEMBWE ZA BORDER INAYOZUNGUKA (SPINNING BORDER) === */
+    .nav-shell {
+        position: relative;
+        overflow: hidden;
+        border-radius: 9999px;
+        background: transparent; /* Tunatumia pseudo-element kuweka background */
+    }
+
+    /* Huyu ndiye anayetengeneza rangi zinazozunguka */
+    .nav-shell::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200vw; /* Upana mkubwa kufunika pembe zote */
+        height: 200vw;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0%,
+            var(--accent-gold) 15%,
+            transparent 30%,
+            transparent 50%,
+            var(--accent-teal) 65%,
+            transparent 80%
+        );
+        animation: spinNavBorder 4s linear infinite;
+        z-index: -2;
+    }
+
+    /* Huyu ndiye anayeficha katikati ili rangi ionekane kama border (mstari) */
+    .nav-shell::after {
+        content: "";
+        position: absolute;
+        inset: 1px; /* 1px inawakilisha unene wa border */
+        border-radius: 9999px;
+        background: rgba(26, 18, 11, 0.95); /* #1a120b */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        z-index: -1;
+    }
+
+    @keyframes spinNavBorder {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Hakikisha vitu vya ndani vinakaa juu ya background */
+    .nav-shell > * {
+        position: relative;
+        z-index: 10;
+    }
 </style>
 
 <header id="main-header" class="pointer-events-none fixed inset-x-0 top-4 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out transform">
-    <nav id="main-nav" class="nav-shell relative z-50 pointer-events-auto flex items-center justify-between rounded-full border border-[var(--line)] bg-[#1a120b]/90 px-4 py-4 backdrop-blur-xl transition-all duration-300 sm:px-5 shadow-sm">
-        <div>
-            <p class="text-sm font-bold uppercase tracking-widest text-[var(--accent-gold)]">MY PORTFOLIO.</p>
+    <!-- Nimeondoa class za border na background hapa kwa sababu CSS inafanya hiyo kazi sasa -->
+    <nav id="main-nav" class="nav-shell pointer-events-auto flex items-center justify-between px-4 py-4 transition-all duration-300 sm:px-5 shadow-lg shadow-[rgba(0,0,0,0.5)]">
+        
+        <!-- SEHEMU YA LOGO NA JINA -->
+        <div class="flex items-center gap-2">
+            <p class="text-sm font-bold uppercase tracking-widest text-[var(--accent-gold)] drop-shadow-md">MY PORTFOLIO.</p>
         </div>
 
+        <!-- MENU YA PC -->
         <div class="hidden items-center gap-8 text-sm font-medium md:flex">
-            <a href="#" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-[var(--accent-gold)]">Home</a>
-            <a href="#about" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-[var(--accent-gold)]">About</a>
-            <a href="#skills" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-[var(--accent-gold)]">Skills</a>
-            <a href="#services" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-[var(--accent-gold)]">Services</a>
-            <a href="#projects" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-[var(--accent-gold)]">Projects</a>
-            <a href="#contact" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-[var(--accent-gold)]">Contact</a>
+            <a href="#" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-white">Home</a>
+            <a href="#about" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-white">About</a>
+            <a href="#skills" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-white">Skills</a>
+            <a href="#services" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-white">Services</a>
+            <a href="#projects" class="nav-link-item relative transition text-[var(--text-soft)] hover:text-white">Projects</a>
+            
+            <!-- Let's Talk Button -->
+            <a href="#contact" class="ml-4 rounded-full bg-[var(--accent-gold)] px-6 py-2.5 text-sm font-bold text-[#1b1207] transition-all hover:brightness-110 hover:-translate-y-0.5 shadow-[0_0_15px_rgba(244,201,93,0.3)]">
+                Let's Talk
+            </a>
         </div>
 
-        <div class="flex items-center gap-3 sm:gap-4">
-            <button id="mobile-menu-toggle" type="button" class="relative z-[100] block h-10 w-10 overflow-hidden rounded-full border border-[var(--line)] bg-transparent md:hidden cursor-pointer touch-manipulation">
+        <!-- MENU YA SIMU -->
+        <div class="flex items-center md:hidden">
+            <button id="mobile-menu-toggle" type="button" class="relative z-[100] block h-10 w-10 overflow-hidden rounded-full border border-[var(--line)] bg-transparent cursor-pointer touch-manipulation">
                 <span id="line-1" class="nav-btn-line pointer-events-none absolute left-[10px] top-[14px] h-[2px] w-5 bg-white"></span>
                 <span id="line-2" class="nav-btn-line pointer-events-none absolute left-[10px] top-[19px] h-[2px] w-5 bg-white"></span>
                 <span id="line-3" class="nav-btn-line pointer-events-none absolute left-[10px] top-[24px] h-[2px] w-5 bg-white"></span>
             </button>
-            <a href="#contact" class="hidden rounded-full bg-[var(--accent-gold)] px-5 py-2 text-sm font-bold text-[#1b1207] transition hover:brightness-110 sm:block shadow-[0_0_15px_rgba(244,201,93,0.3)]">
-                Let's Talk
-            </a>
         </div>
     </nav>
 
-    <div id="mobile-nav-panel" class="mobile-nav-panel pointer-events-none absolute left-4 right-4 top-[110%] z-40 mt-2 origin-top scale-95 rounded-[1.75rem] border border-[var(--line)] bg-[#1a120b]/95 p-4 opacity-0 backdrop-blur-xl transition-all duration-300 ease-out md:hidden shadow-2xl">
+    <!-- DROP-DOWN PANEL YA SIMU -->
+    <div id="mobile-nav-panel" class="mobile-nav-panel pointer-events-none absolute left-4 right-4 top-[110%] z-40 mt-2 origin-top scale-95 rounded-[1.75rem] border border-[var(--line)] bg-[#1a120b]/95 p-5 opacity-0 backdrop-blur-xl transition-all duration-300 ease-out md:hidden shadow-2xl">
         <div class="flex flex-col gap-2 text-sm font-semibold text-white">
             <a href="#" class="nav-link-item mobile-menu-link relative rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-[var(--accent-gold)]">Home</a>
             <a href="#about" class="nav-link-item mobile-menu-link relative rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-[var(--accent-gold)]">About</a>
@@ -100,6 +159,12 @@
             <a href="#services" class="nav-link-item mobile-menu-link relative rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-[var(--accent-gold)]">Services</a>
             <a href="#projects" class="nav-link-item mobile-menu-link relative rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-[var(--accent-gold)]">Projects</a>
             <a href="#contact" class="nav-link-item mobile-menu-link relative rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-[var(--accent-gold)]">Contact</a>
+            
+            <div class="mt-2 pt-4 border-t border-[rgba(255,255,255,0.1)]">
+                <a href="#contact" class="mobile-menu-link flex w-full items-center justify-center rounded-xl bg-[var(--accent-gold)] px-4 py-3.5 text-base font-bold text-[#1b1207] transition hover:brightness-110 shadow-lg">
+                    Let's Talk
+                </a>
+            </div>
         </div>
     </div>
 </header>
@@ -134,25 +199,20 @@
         toggleBtn.addEventListener('click', toggleMobileMenu);
         mobileLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
 
-        // UTUNDU MPYA WA ACCURACY (SCROLLSPY)
         function updateActiveLink() {
             const sections = document.querySelectorAll('section[id]');
             let currentSection = "home";
 
-            // 1. Kama tumefika mwisho kabisa wa ukurasa, lazima iwe Contact
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
                 currentSection = "contact";
             } 
-            // 2. Kama tupo juu kabisa
             else if (window.scrollY < 150) {
                 currentSection = "home";
             } 
-            // 3. Logic ya kupima ipi ipo karibu zaidi na juu (viewport)
             else {
                 let minVal = 999999;
                 sections.forEach(section => {
                     const rect = section.getBoundingClientRect();
-                    // Tunatafuta section ambayo 'top' yake ipo karibu zaidi na 150px kutoka juu
                     const dist = Math.abs(rect.top - 150);
                     if (dist < minVal) {
                         minVal = dist;
@@ -172,7 +232,6 @@
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            // Dissolve effect
             if (scrollTop > lastScrollTop && scrollTop > 100) {
                 header.classList.add('-translate-y-[150%]', 'opacity-0');
             } else {
