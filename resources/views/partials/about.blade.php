@@ -14,11 +14,11 @@
             <!-- Hizi ni zile Stats zetu -->
             <div class="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 border-t border-[var(--surface-line)] pt-10">
                 <div>
-                    <p class="text-4xl font-black text-[var(--accent-orange)]">1+</p>
+                    <p class="text-4xl font-black text-[var(--accent-orange)]">3+</p>
                     <p class="mt-2 text-sm font-bold uppercase tracking-widest text-[var(--surface-text-soft)]">Years Exp.</p>
                 </div>
                 <div>
-                    <p class="text-4xl font-black text-[var(--accent-teal)]">2+</p>
+                    <p class="text-4xl font-black text-[var(--accent-teal)]">5+</p>
                     <p class="mt-2 text-sm font-bold uppercase tracking-widest text-[var(--surface-text-soft)]">Projects</p>
                 </div>
                 <div>

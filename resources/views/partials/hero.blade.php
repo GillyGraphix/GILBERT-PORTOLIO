@@ -58,10 +58,8 @@
         
         <div class="relative z-10 pt-0">
             <!-- Badge: Open for freelance -->
-            <div class="hero-elem delay-100 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--bg-card)] px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[var(--accent-teal)] backdrop-blur">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-teal)] opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-teal)]"></span>
+            <div class="hero-elem delay-100 inline-flex items-center gap-0 rounded-full border border-[var(--line)] bg-[var(--bg-card)] px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[var(--accent-teal)] backdrop-blur">
+                <span class="relative flex h-2 w-2">   
                 </span>
                 Open for freelance projects
             </div>
@@ -72,7 +70,7 @@
                     Hi, I am <span class="text-[var(--accent-gold)]">Gilbert Gervas</span>
                 </span>
                 <span class="hero-elem delay-300 block">
-                    <span class="bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-gold)] bg-clip-text text-transparent">Web</span>
+                    <span class="bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-gold)] bg-clip-text text-transparent">Software</span>
                 </span>
                 <span class="hero-elem delay-300 block">
                     <span class="bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-gold)] bg-clip-text text-transparent">Developer</span> &
